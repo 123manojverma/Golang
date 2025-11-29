@@ -4,3 +4,6 @@
 3. Performance and Efficiency 
 4. Concurrency Model
 5. Static typing and compilation
+
+go build to build the executive file
+go run filename.go to run the code

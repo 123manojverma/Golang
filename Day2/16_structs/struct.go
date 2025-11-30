@@ -7,17 +7,24 @@ import (
 
 // order struct
 
-type order struct {
-	id string 
-	amount float32
-	status string
-	createdAt time.Time // nanosecond precision
+type customer struct {
+	name  string
+	phone string
 }
 
-func newOrder(id string, amount float32, status string) *order{
+// struct embedding
+type order struct {
+	id        string
+	amount    float32
+	status    string
+	createdAt time.Time // nanosecond precision
+	customer
+}
+
+func newOrder(id string, amount float32, status string) *order {
 	// initial setup goes here...
-	myOrder:=order{
-		id:id,
+	myOrder := order{
+		id:     id,
 		amount: amount,
 		status: status,
 	}
@@ -25,18 +32,18 @@ func newOrder(id string, amount float32, status string) *order{
 }
 
 // receiver type
-func (o *order) changeStatus(status string){
-	o.status=status
+func (o *order) changeStatus(status string) {
+	o.status = status
 }
 
-func (o order) getAmount()float32{
+func (o order) getAmount() float32 {
 	return o.amount
 }
 
-func main(){
+func main() {
 	// var order order OR
-	
-	// if you don't set any field, default value is zero value 
+
+	// if you don't set any field, default value is zero value
 	// int->0, float->0, string->"", bool->false
 	// myOrder:=order{
 	// 	id:"1",
@@ -47,7 +54,6 @@ func main(){
 	// myOrder.createdAt=time.Now()
 	// fmt.Println(myOrder.status)
 	// fmt.Println("Order struct",myOrder)
-
 
 	// myOrder2:=order{
 	// 	id:"2",
@@ -64,11 +70,29 @@ func main(){
 	// fmt.Println(myOrder.amount)
 
 	// if want to use struct only one time than declare it inside the main function
-	language := struct{
-		name string
-		isGood bool
-	}{"golang",true}
+	// language := struct{
+	// 	name string
+	// 	isGood bool
+	// }{"golang",true}
 
-	fmt.Println(language)
+	// fmt.Println(language)
+
+	// newCustomer := customer{
+	// 	name:  "john",
+	// 	phone: "1234567890",
+	// }
+	newOrder := order{
+		id:     "1",
+		amount: 30,
+		status: "received",
+		// customer: newCustomer,
+		customer: customer{
+			name:  "john",
+			phone: "1234567890",
+		},
+	}
+
+	newOrder.customer.name="robin"
+	fmt.Println(newOrder)
 
 }

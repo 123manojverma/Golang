@@ -21,9 +21,9 @@ func main(){
 	// IMP: if key does not exists in the map then it returns zero value
 
 
-	// m:=make(map[string]int)
-	// m["age"]=30
-	// m["price"]=300
+	m:=make(map[string]int)
+	m["age"]=30
+	m["price"]=300
 	// fmt.Println(m["phone"])
 
 	// fmt.Println(len(m))
@@ -34,13 +34,15 @@ func main(){
 	// m:=map[string]int{"price":40,"phones":3}
 	// fmt.Println(m)
 
-	// k,ok:=m["price"]
-	// fmt.Println(k)
-	// if ok{
-	// 	fmt.Println("all ok")
-	// }else{
-	// 	fmt.Println("not ok")
-	// }
+	clear(m)
+	fmt.Println(m)
+	k,ok:=m["price"]  // k will return the value and ok contains true or false whether it the key present in the map on not
+	fmt.Println(k)
+	if ok{
+		fmt.Println("all ok")
+	}else{
+		fmt.Println("not ok")
+	}
 
 
 	m1:=map[string]int{"price":40,"phones":4}
